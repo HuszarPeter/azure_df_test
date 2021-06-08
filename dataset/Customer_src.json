@@ -1,0 +1,30 @@
+{
+	"name": "Customer_src",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SrcDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CustomerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FamilyName",
+				"type": "varchar"
+			},
+			{
+				"name": "SureName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Customer"
+		}
+	}
+}
