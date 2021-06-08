@@ -1,0 +1,31 @@
+{
+	"name": "add_update_delete_customer_flow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Customer_src",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "Customer_destination",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Join1"
+				}
+			],
+			"script": "source(output(\n\t\tCustomerId as integer,\n\t\tFamilyName as string,\n\t\tSureName as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source1\nsource(output(\n\t\tId as integer,\n\t\tCustomerId as integer,\n\t\tCustomerName as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source2\nsource1, source2 join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tjoinType:'outer',\n\tbroadcast: 'auto')~> Join1"
+		}
+	}
+}
