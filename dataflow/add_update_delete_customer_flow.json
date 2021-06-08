@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "add_update_delete_customer_flow",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
